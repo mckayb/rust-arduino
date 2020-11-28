@@ -5,30 +5,40 @@
 
 extern crate panic_halt;
 use arduino_uno::prelude::*;
-use arduino_uno::hal::port::portb::PB5;
-use arduino_uno::hal::port::mode::Output;
 
-
-fn stutter_blink(led: &mut PB5<Output>, times: usize) {
-    (0..times).map(|i| i * 10).for_each(|i| {
-        led.toggle().void_unwrap();
-        arduino_uno::delay_ms(i as u16);
-    });
-}
 
 #[arduino_uno::entry]
 fn main() -> ! {
     let peripherals = arduino_uno::Peripherals::take().unwrap();
-
     let mut pins = arduino_uno::Pins::new(
         peripherals.PORTB,
         peripherals.PORTC,
         peripherals.PORTD,
     );
 
-    let mut led = pins.d13.into_output(&mut pins.ddr);
+    let pushbutton = pins.d2.into_floating_input(&mut pins.ddr);
+
+    let mut led3 = pins.d3.into_output(&mut pins.ddr);
+    let mut led4 = pins.d4.into_output(&mut pins.ddr);
+    let mut led5 = pins.d5.into_output(&mut pins.ddr);
 
     loop {
-        stutter_blink(&mut led, 25);
+        if pushbutton.is_low().void_unwrap() {
+            led3.set_high().void_unwrap();
+            led4.set_low().void_unwrap();
+            led5.set_low().void_unwrap();
+        } else {
+            led3.set_low().void_unwrap();
+            led4.set_low().void_unwrap();
+            led5.set_high().void_unwrap();
+
+            arduino_uno::delay_ms(250);
+
+            led4.set_high().void_unwrap();
+            led5.set_low().void_unwrap();
+
+            arduino_uno::delay_ms(250);
+        }
+
     }
 }
