@@ -32,6 +32,3 @@ fn main() -> ! {
         stutter_blink(&mut led, 25);
     }
 }
-
-
-
