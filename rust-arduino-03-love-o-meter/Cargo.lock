@@ -132,7 +132,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust-arduino-spaceship-interface"
+name = "rust-arduino-03-love-o-meter"
 version = "0.1.0"
 dependencies = [
  "arduino-uno",
