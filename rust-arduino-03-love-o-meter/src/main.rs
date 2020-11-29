@@ -19,7 +19,7 @@ fn main() -> ! {
         dp.USART0,
         pins.d0,
         pins.d1.into_output(&mut pins.ddr),
-        9600.into_baudrate()
+        57600.into_baudrate(),
     );
 
     ufmt::uwriteln!(&mut serial, "Hello from Arduino!\r").void_unwrap();
