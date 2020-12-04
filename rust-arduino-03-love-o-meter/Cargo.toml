@@ -17,7 +17,6 @@ git = "https://github.com/Rahix/avr-hal"
 
 [profile.dev]
 panic = "abort"
-lto = true
 opt-level = "s"
 
 [profile.release]
