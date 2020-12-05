@@ -132,7 +132,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust-arduino-blink"
+name = "rust-arduino-02-spaceship-interface"
 version = "0.1.0"
 dependencies = [
  "arduino-uno",

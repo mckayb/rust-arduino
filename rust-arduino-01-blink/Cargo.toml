@@ -1,5 +1,5 @@
 [package]
-name = "rust-arduino-blink"
+name = "rust-arduino-01-blink"
 version = "0.1.0"
 authors = ["McKay Broderick <mckay.db@gmail.com>"]
 edition = "2018"
@@ -15,6 +15,12 @@ git = "https://github.com/Rahix/avr-hal"
 
 [profile.dev]
 panic = "abort"
+lto = true
+opt-level = "s"
 
 [profile.release]
 panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
